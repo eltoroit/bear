@@ -1,0 +1,16 @@
+<!-- prettier-ignore -->
+<script>
+	// Use JavaScript to invoke Lightning Web Components
+	$Lightning.use("c:vfDependency", function () {
+		$Lightning.createComponent("c:bearsWorldwide", {
+			listView: "hidden",
+			markersTitle: "Bears in Visualforce"
+		},
+		"mapDiv");
+		$Lightning.createComponent( "lightning:badge", {
+			label: '{!locationsVF.size} locations found',
+			class: 'slds-theme--inverse'
+		},
+		"badgesDiv");
+	});
+</script>
