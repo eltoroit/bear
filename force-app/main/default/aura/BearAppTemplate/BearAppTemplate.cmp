@@ -1,0 +1,7 @@
+<aura:component isTemplate="true" extends="aura:template">
+
+        <aura:set attribute="title" value="Bears Worldwide"/>
+        <aura:set attribute="auraResetStyle" value=""/>
+        
+
+</aura:component>
