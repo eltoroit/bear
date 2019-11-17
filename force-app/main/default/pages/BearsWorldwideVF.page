@@ -1,0 +1,50 @@
+<apex:page controller="BearController" tabStyle="Bear__c">
+    
+    <div style="text-align:center;margin-top:20px;margin-bottom:20px;">
+        <h1 style="font-size:24px;">Lightning Web Components in Visualforce</h1>
+    </div>
+
+    <!-- TODO #1: load the Lightning Components for Visualforce JavaScript library. -->
+    <apex:includeLightning/>
+
+    <apex:pageBlock>
+        <apex:pageBlockSection>
+            <apex:pageBlockSectionItem>
+                <!-- TODO #2: add a div that will hold the map once it has been created. -->
+                <div id="mapDiv" />
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockTable value="{!locationsVF}" var="location">
+                <apex:column value="{!location['Name']}" />
+				<apex:column value="{!location['Location__Latitude__s']}" />
+                <apex:column value="{!location['Location__Longitude__s']}" />           
+                </apex:pageBlockTable>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+
+    <!-- TODO #3: add a div that will hold the 'locations found' badge once it has been created. -->
+
+    <div id="badgesDiv" style="margin:10px"/>
+    <script>
+        // Use JavaScript to invoke Lightning Web Components
+        $Lightning.use("c:vfDependency", function () {
+            $Lightning.createComponent(
+	            "c:bearsWorldwide",
+	            {
+		            listView: "hidden",
+		            markersTitle: "Bears in Visualforce"
+	            },
+	            "mapDiv"
+            );
+
+            $Lightning.createComponent(
+	            "lightning:badge",
+	            {
+		            label: '{!locationsVF.size} locations found',
+		            class: 'slds-theme--inverse'
+	            },
+	            "badgesDiv"
+            );
+        });
+    </script>
+    
+</apex:page>

@@ -20,4 +20,14 @@ public with sharing class BearController {
             Location__Latitude__s, Location__Longitude__s, Supervisor__r.Name
             FROM Bear__c WHERE Name LIKE :searchTerm ORDER BY Name LIMIT 50];
     }
+
+    public Bear__c[] locationsVF {
+	    get {
+		    if (locationsVF == null) {
+			    locationsVF = BearController.getAllBears();
+		    }
+		    return locationsVF;
+	    }
+	    private set;
+    }
 }
